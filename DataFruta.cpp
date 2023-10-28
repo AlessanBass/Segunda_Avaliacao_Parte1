@@ -203,7 +203,7 @@ class ListaSalarios  {
 };
 
 
-class ListaIdades  {
+class ListaIdades : public Lista {
 	vector<int> lista;
 	
 	public:
@@ -213,19 +213,48 @@ class ListaIdades  {
 	elementos vão existir na lista e depois
 	solicita a digitação de cada um deles
 	*/	
-	void entradaDeDados() {
+	void entradaDeDados() override {
+		int qts;
+
+		cout << "Quantos elementos vai existir na lista? " << endl;
+		cin >> qts;
+		cin.ignore();
+
+		for (int i = 0; i < qts; ++i) {
+			int valor;
+			cout << "Digite o elemento " << (i + 1) << ": " << endl;
+			cin >> valor;
+			lista.pushback(valor);
+		}
+
+		sort(lista.begin(), lista.end());
+	
+	}
+	
+	void mostraMediana() override {
+		double med = lista.size();
 		
+		cout << "Mediana da lista de Idades:" << endl;
+    
+	if (med % 2 == 0) {
+        mediana = (lista[med / 2 - 1] + lista[med / 2]) / 2.0;
+    
+    } else {
+    
+        mediana = lista[med / 2];
+
+		mediana = lista.medfront();
+    }
+
 	}
 	
-	void mostraMediana() {
-		cout << "Aqui vai mostrar a mediana da lista de idades" << endl;
+	void mostraMenor() override {
+		int menorIdade = lista.medfront();
+		cout << "A menor Idade " << menorIdade << endl;
 	}
-	
-	void mostraMenor() {
-		cout << "Aqui vai mostrar a menor das idades" << endl;
-	}
-	void mostraMaior() {
-		cout << "aqui vai mostrar a maior das idades" << endl;
+	void mostraMaior() override {
+		int maiorIdade = lista.medback();
+		cout << "A maior Idade " << maiorIdade << endl;
 	}
 };
  
