@@ -12,7 +12,7 @@ class Data {
 	/*
 	O método abaixo pergunta ao usuários quantos
 	elementos vão existir na lista e depois
-	solicita a digitação de cada um deles
+	solicita a digitação de cada um deles 
 	*/	
 	static int compara(Data d1, Data d2) { 
 		if (d1.ano < d2.ano){
@@ -52,6 +52,23 @@ class Data {
 	}
 };
 
+class Nome {
+	string nome;
+
+	public:
+	
+	Nome (string _nome) {
+		this-> nome = _nome;
+	}
+	string getNome(){
+		return this->nome;
+	}
+	void setNome(string _nome){
+		this-> nome=_nome;
+	}
+
+};
+
 class Lista {
 	public:
 	virtual void entradaDeDados() =0;
@@ -64,7 +81,6 @@ class ListaNomes  {
 	vector<string> lista;
 	
 	public:
-	
 	/*
 	O método abaixo pergunta ao usuários quantos
 	elementos vão existir na lista e depois
