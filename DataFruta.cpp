@@ -87,7 +87,20 @@ class ListaNomes  {
 	solicita a digitação de cada um deles
 	*/	
 	void entradaDeDados() {
-		lista.push_back("Teste");
+		string nome;
+		int escolha;
+
+		cout <<"Insira um nome: " << endl;
+		cin >>nome;
+		cout <<"Deseja inserir mais nome? 1- Sim 2-Nao"<< endl;
+		cin >> escolha; 
+
+		if(escolha == 1){
+		cout <<"Insira um nome: " << endl;
+		cin >>nome;
+		}else {}
+		
+		lista.push_back(nome);
 	}
 		
 	void mostraMediana() {
