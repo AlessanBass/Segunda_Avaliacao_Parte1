@@ -176,7 +176,7 @@ class ListaDatas : public Lista {
 	}
 };
 
-class ListaSalarios  {
+class ListaSalarios : public Lista  { 
 	vector<float> lista;
 	
 	public:
@@ -186,20 +186,46 @@ class ListaSalarios  {
 	elementos vão existir na lista e depois
 	solicita a digitação de cada um deless
 	*/	
-	void entradaDeDados() {
-		
+	void entradaDeDados()override {
+		int quantidade;
+		float salario;
+
+		cout << "Quantos salarios deseja inserir na list: " << endl;
+		cin >> quantidade;
+		cin.ignore();
+
+		for (int i = 0; i<quantidade; i++ ) {
+			cout << "Digite o salario: " << endl;
+			cin >> salario;
+
+			lista.push_back(salario);
+		}
+		sort(lista.begin(),lista.end());
 	}
 			
-	void mostraMediana() {
-		cout << "Aqui vai mostrar a mediana da lista de salarios" << endl;
+	void mostraMediana()override {
+		int tamanho;
+		float mediana;
+
+		tamanho = lista.size();
+		
+		if (tamanho % 2 == 1 ) {
+			mediana = lista[tamanho/2];
+			cout << "A mediana e: " << mediana << endl;
+		} else {
+			mediana = (lista[tamanho / 2 - 1] + lista[tamanho / 2]) / 2.0;
+			cout << "A mediana e: " << mediana << endl;
+		}
 	}
 	
-	void mostraMenor() {
-		cout << "Aqui vai mostrar o menor dos salarios" << endl;
+	void mostraMenor()override {
+		cout << "O menor salario e: " << lista.front() << endl;
+		
 	}
-	void mostraMaior() {
-		cout << "aqui vai mostrar o maior dos salarios" << endl;
+	void mostraMaior()override {
+		cout << "O maior salario e: " << lista.back() << endl;
 	}
+
 };
 
 
