@@ -52,23 +52,6 @@ class Data {
 	}
 };
 
-class Nome {
-	string nome;
-
-	public:
-	
-	Nome (string _nome) {
-		this-> nome = _nome;
-	}
-	string getNome(){
-		return this->nome;
-	}
-	void setNome(string _nome){
-		this-> nome=_nome;
-	}
-
-};
-
 class Lista {
 	public:
 	virtual void entradaDeDados() =0;
@@ -77,7 +60,7 @@ class Lista {
 	virtual void mostraMaior() =0;
 };
 
-class ListaNomes  {
+class ListaNomes : public Lista {
 	vector<string> lista;
 	
 	public:
@@ -86,32 +69,50 @@ class ListaNomes  {
 	elementos vão existir na lista e depois
 	solicita a digitação de cada um deles
 	*/	
-	void entradaDeDados() {
-		string nome;
-		int escolha;
+	void entradaDeDados() override {
+		string nome;  //EU TO ARMAZENANDO OS DADOS EM ORDEM ALFABETICA?
+		int quantidade;
 
-		cout <<"Insira um nome: " << endl;
-		cin >>nome;
-		cout <<"Deseja inserir mais nome? 1- Sim 2-Nao"<< endl;
-		cin >> escolha; 
+		cout <<"Deseja adicionar quantos nomes? " << endl;
+		cin >>quantidade;
+		cin.ignore();
 
-		if(escolha == 1){
-		cout <<"Insira um nome: " << endl;
-		cin >>nome;
-		}else {}
-		
+		for(int i=0; i<quantidade; i++){ 
+			cout <<"Digite o nome: " << endl;
+			getline(cin,nome);
 		lista.push_back(nome);
+		}
+		sort(lista.begin(),lista.end());
+		
 	}
 		
-	void mostraMediana() {
-		cout << "Aqui vai mostrar a mediana da lista de strings" << endl;
+	void mostraMediana() override { 
+		int tamanhoNome = lista.size();
+		string mediana;
+
+		cout << " MEDIANA DA LISTA DE NOMES: " << endl;
+
+		if (tamanhoNome % 2 == 1) {
+			// Tamanho ímpar, a mediana é o elemento do meio
+		mediana = lista[tamanhoNome / 2];
+			cout << "Mediana da lista de nomes: " << mediana << endl;
+    	} else {
+			// Tamanho par, a mediana é o primeiro dos dois nomes em ordem alfabética
+		mediana = lista.front();
+			cout << "Mediana da lista de nomes: " << mediana << endl;
+  	    }
 	}
 	
-	void mostraMenor() {
-		cout << "Aqui vai mostrar o primeiro nome alfabeticamente" << endl;
+	void mostraMenor() override {
+		string menor = lista.front();
+		cout << "PRIMEIRO NOME CRONOLOGICAMENTE: " << endl;
+		cout << "Primeiro nome: " << menor << endl;
+
 	}
-	void mostraMaior() {
-		cout << "aqui vai mostrar o ultimo nome alfabeticamente" << endl;
+	void mostraMaior() override {
+		string maior = lista.back();
+		cout << "ULTIMO  NOME CRONOLOGICAMENTE: " << endl;
+		cout << "Ultimo nome: " << maior << endl;
 	}
 };
 
@@ -261,7 +262,7 @@ class ListaIdades  {
 int main () {
 	vector<Lista*> listaDeListas;
 	
-	ListaNomes listaNomes;
+ 	ListaNomes listaNomes;
 	listaNomes.entradaDeDados();
 	listaDeListas.push_back(&listaNomes);
 	
