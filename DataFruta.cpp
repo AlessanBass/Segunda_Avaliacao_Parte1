@@ -70,7 +70,7 @@ class ListaNomes : public Lista {
 	solicita a digitação de cada um deles
 	*/	
 	void entradaDeDados() override {
-		string nome;  //EU TO ARMAZENANDO OS DADOS EM ORDEM ALFABETICA?
+		string nome;  
 		int quantidade;
 
 		cout <<"Deseja adicionar quantos nomes? " << endl;
@@ -89,9 +89,7 @@ class ListaNomes : public Lista {
 	void mostraMediana() override { 
 		int tamanhoNome = lista.size();
 		string mediana;
-
-		cout << " MEDIANA DA LISTA DE NOMES: " << endl;
-
+		cout << ">>> MEDIANA DA LISTA DE NOMES: " << endl;
 		if (tamanhoNome % 2 == 1) {
 			// Tamanho ímpar, a mediana é o elemento do meio
 		mediana = lista[tamanhoNome / 2];
@@ -105,13 +103,13 @@ class ListaNomes : public Lista {
 	
 	void mostraMenor() override {
 		string menor = lista.front();
-		cout << "PRIMEIRO NOME CRONOLOGICAMENTE: " << endl;
+		cout << ">>> MOSTRANDO PRIMEIRO NOME ALFABETICAMENTE: " << endl;
 		cout << "Primeiro nome: " << menor << endl;
 
 	}
 	void mostraMaior() override {
 		string maior = lista.back();
-		cout << "ULTIMO  NOME CRONOLOGICAMENTE: " << endl;
+		cout << ">>> MOSTRANDO ULTIMO  NOME ALFABETICAMENTE: " << endl;
 		cout << "Ultimo nome: " << maior << endl;
 	}
 };
@@ -157,7 +155,7 @@ class ListaDatas : public Lista {
 		Data mediana(0,0,0);
 		int tamanho = lista.size();
 
-		cout << ">>> MEDIANA DA LISTA DE NOMES: " << endl;
+		cout << ">>> MEDIANA DA LISTA DE DATAS: " << endl;
 
 		if (tamanho % 2 == 1) {
 			// Tamanho ímpar, a mediana é o elemento do meio
@@ -166,7 +164,7 @@ class ListaDatas : public Lista {
     	} else {
 			// Tamanho par, a mediana é o primeiro dos dois nomes em ordem alfabética
 			mediana = lista.front();
-			cout << "Mediana da lista de nomes: " << mediana.toString() << endl;
+			cout << "Mediana da lista de datas: " << mediana.toString() << endl;
   	    }
 	}
 	
@@ -220,7 +218,7 @@ class ListaSalarios : public Lista  {
 		int quantidade;
 		float salario;
 
-		cout << "Quantos salarios deseja inserir na list: " << endl;
+		cout << "Quantos salarios deseja inserir na lista: " << endl;
 		cin >> quantidade;
 		cin.ignore();
 
@@ -238,6 +236,8 @@ class ListaSalarios : public Lista  {
 		float mediana;
 
 		tamanho = lista.size();
+
+		cout << ">>> MEDIANA DA LISTA DE SALARIOS: " << endl;
 		
 		if (tamanho % 2 == 1 ) {
 			mediana = lista[tamanho/2];
@@ -249,10 +249,12 @@ class ListaSalarios : public Lista  {
 	}
 	
 	void mostraMenor()override {
+		cout << ">>> MOSTRANDO O MENOR SALARIO: " << endl;
 		cout << "O menor salario e: " << lista.front() << endl;
 		
 	}
 	void mostraMaior()override {
+		cout << ">>> MOSTRANDO O MAIOR SALARIO: " << endl;
 		cout << "O maior salario e: " << lista.back() << endl;
 	}
 
@@ -271,16 +273,16 @@ class ListaIdades : public Lista {
 	*/	
 	void entradaDeDados() override {
 		int qts;
+		int valor;
 
-		cout << "Quantos elementos vai existir na lista? " << endl;
+		cout << "Quantos elementos vai existir na lista de idades? " << endl;
 		cin >> qts;
 		cin.ignore();
 
 		for (int i = 0; i < qts; ++i) {
-			int valor;
 			cout << "Digite o elemento " << (i + 1) << ": " << endl;
 			cin >> valor;
-			lista.pushback(valor);
+			lista.push_back(valor);
 		}
 
 		sort(lista.begin(), lista.end());
@@ -288,28 +290,30 @@ class ListaIdades : public Lista {
 	}
 	
 	void mostraMediana() override {
-		double med = lista.size();
+		int  tamanho = lista.size();
+		float mediana;
 		
-		cout << "Mediana da lista de Idades:" << endl;
+		cout << ">>> MEDIANA DA LISTA DE IDADES: " << endl;
     
-	if (med % 2 == 0) {
-        mediana = (lista[med / 2 - 1] + lista[med / 2]) / 2.0;
+	if (tamanho % 2 == 0) {
+        mediana = (lista[tamanho / 2 - 1] + lista[tamanho / 2]) / 2.0;
+		cout << "Mediana da idade eh: " << mediana << endl;
     
     } else {
-    
-        mediana = lista[med / 2];
-
-		mediana = lista.medfront();
+        mediana = lista[tamanho / 2];
+		cout << "Mediana da idade eh: " << mediana << endl;
     }
 
 	}
 	
 	void mostraMenor() override {
-		int menorIdade = lista.medfront();
+		int menorIdade = lista.front();
+		cout << ">>> MOSTRANDO A MENOR IDADE: " << endl;
 		cout << "A menor Idade " << menorIdade << endl;
 	}
 	void mostraMaior() override {
-		int maiorIdade = lista.medback();
+		int maiorIdade = lista.back();
+		cout << ">>> MOSTRANDO A MAIOR IDADE: " << endl;
 		cout << "A maior Idade " << maiorIdade << endl;
 	}
 };
@@ -338,6 +342,7 @@ int main () {
 		l->mostraMediana();
 		l->mostraMenor();
 		l->mostraMaior();
+		cout << "------------------------" << endl;
 	}
 	
 }
